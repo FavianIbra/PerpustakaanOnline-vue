@@ -18,7 +18,7 @@
                         <div class="col-md-12">
                             <div class="card card-primary card-outline">
                                 <div class="card-body">
-                                    <router-link class="btn btn-info mb-2" to="">
+                                    <router-link class="btn mb-2" style="background-color: #F0EEED;" to="">
                                         <i class="fas fa-plus"></i> Tambah
                                     </router-link>
                                     <table class="table table-bordered">
@@ -27,6 +27,8 @@
                                             <th style="width: 10px">#</th>
                                             <th>Nama Lengkap</th>
                                             <th>Kelas</th>
+                                            <th>Gender</th>
+                                            <th>Tanggal Lahir</th>
                                             <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -35,11 +37,13 @@
                                                 <td>{{ s.id_siswa }}</td>
                                                 <td>{{ s.nama_siswa }}</td>
                                                 <td>{{ s.nama_kelas }}</td>
+                                                <td>{{ s.gender }}</td>
+                                                <td>{{ s.tanggal_lahir }}</td>
+                                               
                                                 <td>
-                                                    <div class="btn-group">
-                                                        <router-link class="btn btn-success" :to="{ name : 'detailsiswa' , params : { id : s.id } }">Detail</router-link>                                                        
-                                                        <router-link class="btn btn-warning" :to="{ name : 'editsiswa' , params : { id : s.id } }">Edit</router-link>  
-                                                        <button type="button" @click="hapus(s.id)" class="btn btn-danger">Hapus</button>                                                      
+                                                    <div class="btn-group">                                                       
+                                                        <router-link class="btn" style ="background-color: #609EA2 ;" :to="{ name : 'editsiswa' , params : { id : s.id } }">Edit</router-link>  
+                                                        <button type="button" @click="hapus(s.id)" class="btn" style="background-color: #C92C6D;">Hapus</button>                                                      
                                                     </div>
                                                 </td>
                                             </tr>
