@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import  DashboardView from '../views/DashboardView.vue'
 import IndexSiswa from '../views/IndexSiswa.vue'
+import IndexBuku from '../views/IndexBuku.vue'
 import Vue from 'vue'
 
 Vue.use(VueRouter)
@@ -15,6 +16,11 @@ const routes = [
     path: '/siswa',
     name: 'IndexSiswa',
     component: IndexSiswa
+  },
+  {
+    path: '/buku',
+    name: 'IndexBuku',
+    component: IndexBuku
   }
 ]
 
