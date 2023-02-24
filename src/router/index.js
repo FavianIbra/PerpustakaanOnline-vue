@@ -1,5 +1,6 @@
 import VueRouter from 'vue-router'
 import  DashboardView from '../views/DashboardView.vue'
+import IndexSiswa from '../views/IndexSiswa.vue'
 import Vue from 'vue'
 
 Vue.use(VueRouter)
@@ -10,12 +11,12 @@ const routes = [
     name: 'Dashboard',
     component: DashboardView
   },
+  {
+    path: '/siswa',
+    name: 'IndexSiswa',
+    component: IndexSiswa
+  }
 ]
-
-// const router = createRouter({
-//   history: createWebHistory(process.env.BASE_URL),
-//   routes
-// })
 
 const router = new VueRouter({
   mode: 'history',

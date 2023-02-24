@@ -18,9 +18,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/siswa" class="nav-link">
                         <i class="nav-icon fas fa-user-friends"></i>
-                        <p>Anggota</p>
+                        <p>Siswa</p>
                     </a>
                 </li>
                 <li class="nav-item">
