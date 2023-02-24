@@ -31,8 +31,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(s, index) in siswa" :key="index">
-                                                <td>{{ index + 1 }}</td>
+                                            <tr v-for="s in siswa" :key="s.id_siswa">
+                                                <td>{{ s.id_siswa }}</td>
                                                 <td>{{ s.nama_siswa }}</td>
                                                 <td>{{ s.nama_kelas }}</td>
                                                 <td>
@@ -56,6 +56,11 @@
 </template>
 <script>
 
+import Vue from 'vue';
+import axios from 'axios';
+
+Vue.use('axios');
+
 import NavigationBar from '../components/template/NavigationBar.vue'
 import AppSidebar from '../components/template/AppSidebar.vue'
 export default {
@@ -69,8 +74,18 @@ export default {
         }
     },
     created() {
+        this.DataSiswa();
     },
     methods : {
+        DataSiswa(){
+            axios.get('http://127.0.0.1:8000/api/getsiswa')
+            .then(
+                ({data}) => {
+                    console.log(data);
+                    this.siswa = data;
+                }
+            );
+        }
     }
 }
 </script>
