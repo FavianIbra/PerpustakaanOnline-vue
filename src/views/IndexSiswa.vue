@@ -18,10 +18,10 @@
             <input type="date" class="form-control" v-model="siswa.tanggal_lahir" id="tgl_lahir" autocomplete="off">
             <label for="gender" class="form-label">Gender: </label> <br>
             <div class="btn-group btn-group-toggle" id="gender" data-toggle="buttons">
-                <label class="btn" style="background-color: aqua;">
+                <label class="btn btn-outline-success">
                     <input type="radio" value="L" v-model="siswa.gender"> Laki-laki
                 </label>
-                <label class="btn" style="background-color: chartreuse;">
+                <label class="btn btn-outline-success">
                     <input type="radio" value="P" v-model="siswa.gender"> Perempuan
                 </label>
             </div><br>
@@ -32,7 +32,7 @@
             <label for="alamat" class="form-label">Alamat:</label>
             <input type="text" class="form-control" v-model="siswa.alamat" id="alamat" autocomplete="off">
             <br>
-            <input type="submit" class="btn btn-primary">
+            <input type="submit" class="btn btn-outline-dark">
         </form>
       </div>
     </div>
@@ -79,8 +79,8 @@
                                         <td>{{ s.tanggal_lahir }}</td>
                                         <td>
                                             <div class="btn-group">                                                       
-                                                <router-link class="btn" style ="background-color: #609EA2 ;" :to="{ name : 'editsiswa' , params : { id : s.id } }">Edit</router-link>  
-                                                <button type="button" @click="hapus(s.id)" class="btn" style="background-color: #C92C6D;">Hapus</button>                                                      
+                                                <router-link class="btn btn-outline-dark"  :to="{ name : 'editsiswa' , params : { id : s.id } }">Edit</router-link>  
+                                                <button type="button" @click="hapus(s.id)" class="btn btn-outline-dark" >Hapus</button>                                                      
                                             </div>
                                         </td>
                                     </tr>
