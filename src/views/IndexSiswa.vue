@@ -13,26 +13,26 @@
       <div class="modal-body">
         <form @submit.prevent="save">
             <label for="nama" class="form-label">Nama Siswa:</label>
-            <input type="text" class="form-control" v-model="siswa.nama_siswa" id="nama" autocomplete="off" placeholder="Masukkan nama..">
+            <input type="text" class="form-control" v-model="model.siswa.nama_siswa" id="nama" autocomplete="off" placeholder="Masukkan nama..">
             <label for="tgl_lahir" class="form-label">Date:</label>
-            <input type="date" class="form-control" v-model="siswa.tanggal_lahir" id="tgl_lahir" autocomplete="off">
+            <input type="date" class="form-control" v-model="model.siswa.tanggal_lahir" id="tgl_lahir" autocomplete="off">
             <label for="gender" class="form-label">Gender: </label> <br>
             <div class="btn-group btn-group-toggle" id="gender" data-toggle="buttons">
                 <label class="btn btn-outline-success">
-                    <input type="radio" value="L" v-model="siswa.gender"> Laki-laki
+                    <input type="radio" value="L" v-model="model.siswa.gender"> Laki-laki
                 </label>
                 <label class="btn btn-outline-success">
-                    <input type="radio" value="P" v-model="siswa.gender"> Perempuan
+                    <input type="radio" value="P" v-model="model.siswa.gender"> Perempuan
                 </label>
             </div><br>
             <label for="kelas">Kelas:</label>
-            <select v-model="siswa.id_kelas" id="kelas" class="form-control">
+            <select v-model="model.siswa.id_kelas" id="kelas" class="form-control">
                 <option v-for="k in kelas" :key="k.id_kelas" :value="k.id_kelas">{{ k.nama_kelas }}</option>
             </select>
             <label for="alamat" class="form-label">Alamat:</label>
-            <input type="text" class="form-control" v-model="siswa.alamat" id="alamat" autocomplete="off">
+            <input type="text" class="form-control" v-model="model.siswa.alamat" id="alamat" autocomplete="off">
             <br>
-            <input type="submit" class="btn btn-outline-dark">
+            <button >Simpan</button>
         </form>
       </div>
     </div>
@@ -56,7 +56,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-body">
-                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-outline-dark mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Tambah Siswa
                             </button>
                             <table class="table table-bordered">
@@ -80,7 +80,7 @@
                                         <td>
                                             <div class="btn-group">                                                       
                                                 <router-link class="btn btn-outline-dark"  :to="{ name : 'editsiswa' , params : { id : s.id } }">Edit</router-link>  
-                                                <button type="button" @click="hapus(s.id)" class="btn btn-outline-dark" >Hapus</button>                                                      
+                                                <button type="button" @click="hapus(s.id_siswa)" class="btn btn-outline-dark" >Hapus</button>                                                      
                                             </div>
                                         </td>
                                     </tr>
@@ -113,6 +113,16 @@ export default {
         return {
             siswa : {},
             kelas: {},
+            model:{
+                siswa:{
+                    nama_siswa:"",
+                tanggal_lahir: "",
+                gender : "",
+                id_kelas: "",
+                alamat : "",
+                }
+            },
+            message : {},
         }
     },
     created() {
@@ -124,7 +134,6 @@ export default {
             axios.get('http://127.0.0.1:8000/api/getsiswa')
             .then(
                 ({data}) => {
-                    console.log(data);
                     this.siswa = data;
                 }
             );
@@ -133,19 +142,23 @@ export default {
             axios.get('http://localhost:8000/api/getkelas')
             .then(
                 ({data}) => {
-                    console.log(data);
                     this.kelas = data
                 }
             )
         },
         save(){
-            this.save_data();
-        },
-        save_data(){
-            axios.post('http://localhost:8000/api/createsiswa' , this.siswa, this.kelas)
+            axios.post('http://localhost:8000/api/createsiswa', this.model.siswa)
             .then(
-                ({data}) => {
-                    this.siswa = data
+                (data) => {
+                    this.message = data
+                }
+            )
+        },
+        hapus(id){
+            axios.delete('http://localhost:8000/api/deletesiswa/'+ id)
+            .then(
+                (data) => {
+                    this.message = data
                 }
             )
         }
