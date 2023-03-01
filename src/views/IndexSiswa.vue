@@ -155,34 +155,40 @@ export default {
                         title:"Sukses tambah siswa",
                         icon: "success"
                     })
+                    setTimeout(() => {
+        window.location.reload()
+    },1000)
                     this.message = data
                 }
             )
         },
         hapus(id){
-            axios.delete('http://localhost:8000/api/deletesiswa/'+ id)
-            .then(
-                (data) => {
                     swal({
-                        title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        title: "Serius mau dihapus?",
+                        text: "Jika terhapus, file ini tidak akan bisa di kembalikan!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
-      icon: "success",
-    });
-  } else {
-    swal("Your imaginary file is safe!");
-  }
-});
-                    this.message = data
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            axios.delete('http://localhost:8000/api/deletesiswa/'+ id)
+                            .then(
+                                ({data}) => {
+                                    this.message = data
+                                }
+                            )
+                            swal("Sukses! Data kamu sudah berhasil di hapus", {
+                                icon: "success",
+                            });
+                            setTimeout(() => {
+                                window.location.reload()
+                            },1000)
+                        } else {
+                            swal("Anda berhasil cancel delete!");
+                        }
+                    });
                 }
-            )
+            }
         }
-    }
-}
-</script>
+        </script>

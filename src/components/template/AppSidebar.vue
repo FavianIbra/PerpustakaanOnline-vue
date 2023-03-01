@@ -1,7 +1,7 @@
 <template>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
+        <a href="#" class="brand-link"  style="text-decoration: none;">
             <img src="dist/img/avatar5.png" alt="" class="brand-image img-circle elevation-3">
             <span class="brand-text font-weight-light">Perpustakaan</span>
         </a>
