@@ -32,7 +32,7 @@
             <label for="alamat" class="form-label">Alamat:</label>
             <input type="text" class="form-control" v-model="model.siswa.alamat" id="alamat" autocomplete="off">
             <br>
-            <button >Simpan</button>
+            <input type="submit" class="btn btn-outline-dark">
         </form>
       </div>
     </div>
@@ -99,6 +99,7 @@
 
 import Vue from 'vue';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 Vue.use('axios');
 
@@ -115,7 +116,7 @@ export default {
             kelas: {},
             model:{
                 siswa:{
-                    nama_siswa:"",
+                nama_siswa:"",
                 tanggal_lahir: "",
                 gender : "",
                 id_kelas: "",
@@ -150,6 +151,10 @@ export default {
             axios.post('http://localhost:8000/api/createsiswa', this.model.siswa)
             .then(
                 (data) => {
+                    swal({
+                        title:"Sukses tambah siswa",
+                        icon: "success"
+                    })
                     this.message = data
                 }
             )
@@ -158,6 +163,22 @@ export default {
             axios.delete('http://localhost:8000/api/deletesiswa/'+ id)
             .then(
                 (data) => {
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("Poof! Your imaginary file has been deleted!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your imaginary file is safe!");
+  }
+});
                     this.message = data
                 }
             )
