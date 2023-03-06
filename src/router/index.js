@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import  DashboardView from '../views/DashboardView.vue'
 import IndexSiswa from '../views/IndexSiswa.vue'
+import editsiswa from '../components/edit-siswa/EditSiswa.vue'
 import IndexBuku from '../views/IndexBuku.vue'
 import Vue from 'vue'
 
@@ -21,6 +22,10 @@ const routes = [
     path: '/buku',
     name: 'IndexBuku',
     component: IndexBuku
+  },
+  {
+    path: '/editsiswa/:id',
+    component: editsiswa
   }
 ]
 

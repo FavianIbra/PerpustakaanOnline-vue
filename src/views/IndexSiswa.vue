@@ -79,8 +79,8 @@
                                         <td>{{ s.tanggal_lahir }}</td>
                                         <td>
                                             <div class="btn-group">                                                       
-                                                <router-link class="btn btn-outline-dark"  :to="{ name : 'editsiswa' , params : { id : s.id } }">Edit</router-link>  
-                                                <button type="button" @click="hapus(s.id_siswa)" class="btn btn-outline-dark" >Hapus</button>                                                      
+                                                <router-link class="btn btn-primary" :to="{path: '/editsiswa/' + s.id_siswa}" >Edit</router-link>  
+                                                <button type="button" @click="hapus(s.id_siswa)" class="btn btn-warning" >Hapus</button>                                                      
                                             </div>
                                         </td>
                                     </tr>
