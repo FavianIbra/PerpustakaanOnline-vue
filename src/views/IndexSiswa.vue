@@ -67,6 +67,7 @@
                                         <th>Kelas</th>
                                         <th>Gender</th>
                                         <th>Tanggal Lahir</th>
+                                        <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -77,6 +78,7 @@
                                         <td>{{ s.nama_kelas }}</td>
                                         <td>{{ s.gender }}</td>
                                         <td>{{ s.tanggal_lahir }}</td>
+                                        <td>{{ s.alamat }}</td>
                                         <td>
                                             <div class="btn-group">                                                       
                                                 <router-link class="btn btn-primary" :to="{path: '/editsiswa/' + s.id_siswa}" >Edit</router-link>  

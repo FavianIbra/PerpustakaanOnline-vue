@@ -18,15 +18,24 @@
                         <div class="col-md-12">
                             <div class="card card-primary card-outline">
                                 <div class="card-body">
-                                    <form action="">
+                                    <form @submit.prevent="save">
+                                        <input type="hidden" v-model="id_siswa">
                                         Nama:
                                         <input type="text" v-model="nama_siswa" class="form-control" disabled>
                                         Tanggal Lahir :
                                         <input type="date" v-model="tanggal_lahir" class="form-control" >
                                         Gender :
-                                        <select v-model="gender">
-                                        <option  value=""></option>
+                                        <select v-model="gender" class=form-control disabled>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
                                         </select>
+                                        Kelas :
+                                        <select v-model="id_kelas" class="form-control">
+                                            <option v-for="k in kelas" :key="k.id_kelas" :value="k.id_kelas">{{ k.nama_kelas }}</option>
+                                        </select>
+                                        Alamat :
+                                        <input type="text" v-model="alamat" class="form-control">
+                                        <input type="submit" class="btn btn-outline-primary mt-2">
                                     </form>
                                 </div>
                             </div>
@@ -41,6 +50,7 @@
 
 import Vue from 'vue';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 Vue.use('axios');
 
@@ -53,10 +63,14 @@ export default {
     },
     data(){
         return{
-            datasiswa: {},
+            kelas: {},
             nama_siswa: '',
             tanggal_lahir:'',
             gender: '',
+            id_kelas: '',
+            alamat:'',
+            id_siswa: ''
+
         }
     },
     created(){
@@ -72,14 +86,43 @@ export default {
                         this.nama_siswa = response.data[0].nama_siswa
                         this.tanggal_lahir = response.data[0].tanggal_lahir
                         this.gender = response.data[0].gender
+                        this.id_kelas = response.data[0].id_kelas
+                        this.alamat = response.data[0].alamat
+                        this.id_siswa = response.data[0].id_siswa
                     }
                 )
         },
         siswa(){
-            axios.get('http://localhost:8000/api/getsiswa')
+            axios.get('http://localhost:8000/api/getkelas')
             .then(
                 ({data}) => {
-                    this.datasiswa = data
+                    this.kelas = data
+                }
+            )
+        },
+        save(){
+            this.save_data()
+        },
+        save_data: function(){
+
+            let data_siswa = {
+                id_siswa : this.id_siswa ,
+                id_kelas : this.id_kelas,
+                nama_siswa : this.nama_siswa,
+                gender : this.gender,
+                tanggal_lahir : this.tanggal_lahir,
+                alamat : this.alamat
+            }
+
+            axios.put('http://localhost:8000/api/updatesiswa/' + this.id_siswa , data_siswa)
+            .then(
+                (response) => {
+                    console.log(response)
+                    swal({
+                        title:"Sukses edit siswa",
+                        icon: "success"
+                    })
+                    this.$router.push('/siswa')
                 }
             )
         }
