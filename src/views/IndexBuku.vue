@@ -62,7 +62,7 @@
                                         <td>
                                             <div class="btn-group">                                                       
                                                 <router-link class="btn btn-primary" :to="{path: '/editbuku/' + b.id_buku}" >Edit</router-link>  
-                                                <button type="button" @click="hapus(b.buku)" class="btn btn-warning" >Hapus</button>                                                      
+                                                <button type="button" @click="hapus(b)" class="btn btn-warning" >Hapus</button>                                                      
                                             </div>
                                         </td>
                                     </tr>
@@ -125,11 +125,38 @@ export default {
                     })
                     setTimeout(() => {
                         window.location.reload()
-                    }, 1200);
+                    }, 1200)
+                
                 }
             )
+        },
+        hapus(b){
+            swal({
+                title: "Serius mau dihapus?",
+                        text: "Jika terhapus, file ini tidak akan bisa di kembalikan!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            axios.delete('http://localhost:8000/api/deletebuku/' + b.id_buku)
+                            .then(
+                                ({data}) => {
+                                    this.message = data
+                                }
+                            )
+                            swal("Sukses! Data kamu sudah berhasil di hapus", {
+                                icon: "success",
+                            });
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1200) 
+                        } else {
+                            swal("Anda berhasil cancel delete!");
+                        }
+                    });
+                }
+            }
         }
-     
-    }
-    }
         </script>

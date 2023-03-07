@@ -24,7 +24,7 @@
                                         <input type="text" v-model="judul_buku" class="form-control" >
                                         Pengarang :
                                         <input type="text" v-model="pengarang" class="form-control" >
-                                        <input type="submit" class="btn btn-outline-primary mt-2">
+                                        <input type="submit" class="btn btn-outline-dark mt-3">
                                     </form>
                                 </div>
                             </div>
