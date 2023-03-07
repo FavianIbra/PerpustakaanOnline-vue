@@ -35,7 +35,7 @@
                                         </select>
                                         Alamat :
                                         <input type="text" v-model="alamat" class="form-control">
-                                        <input type="submit" class="btn btn-outline-primary mt-2">
+                                        <input type="submit" class="btn btn-outline-dark mt-3">
                                     </form>
                                 </div>
                             </div>
