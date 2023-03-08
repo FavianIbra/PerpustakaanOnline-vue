@@ -176,6 +176,29 @@ export default {
                 timer: 1000
             })
         },
+        hapus(n) {
+            swal({
+                title: "Mang eak dihapus?",
+                text: "Data yang sudah terhapus tidak dapat dikembalikan!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    axios.delete('http://localhost:8000/api/deletepeminjaman/' + n.id_peminjaman)
+                    swal("Poof! data peminjaman sudah ke hapus!", {
+                        icon: "success",
+                        button: false
+                    });
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1200);
+                } else {
+                    swal("Data tidak jadi terhapus!", { icon: 'success' });
+
+                }
+            });
+        },
     }
 }
 
