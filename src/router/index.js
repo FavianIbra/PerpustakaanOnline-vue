@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import  DashboardView from '../views/DashboardView.vue'
 import IndexSiswa from '../views/IndexSiswa.vue'
+import IndexPeminjaman from '../views/IndexPeminjaman.vue'
 import editsiswa from '../components/edit-siswa/EditSiswa.vue'
 import editbuku from '../components/edit-buku/EditBuku.vue'
 import IndexBuku from '../views/IndexBuku.vue'
@@ -31,6 +32,10 @@ const routes = [
   {
     path: '/editbuku/:id',
     component: editbuku
+  },
+  {
+  path: '/peminjaman',
+  component: IndexPeminjaman
   }
 ]
 

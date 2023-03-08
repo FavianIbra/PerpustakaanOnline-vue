@@ -30,30 +30,13 @@
                         <p>Buku</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-exchange-alt"></i>
-                    <p>
-                        Transaksi
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-file-export nav-icon"></i>
-                                <p>Peminjaman</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fas fa-file-import nav-icon"></i>
-                                <p>Pengembalian</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+               <li class="nav-item">
+                    <a href="/peminjaman" class="nav-link">
+                    <i class="fas fa-file-export nav-icon"></i>
+                    <p>Peminjaman</p>
+                </a>
+            </li>
+        </ul>
         </nav>
         <!-- /.sidebar-menu -->
         </div>
