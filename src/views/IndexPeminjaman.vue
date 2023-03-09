@@ -1,5 +1,37 @@
 <template>
     <div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Peminjaman</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form @submit.prevent="save">
+                            <label for="nama_siswa" class="form-label">Nama Siswa:</label>
+                            <select v-model="peminjaman.id_siswa" id="siswa" class="form-control">
+                                <option v-for="s in siswa" :key="s.id_siswa" :value="s.id_siswa">{{ s.nama_siswa }}</option>
+                            </select>
+
+
+                            <label for="kelas" class="form-label">Kelas: </label>
+                            <select v-model="peminjaman.id_kelas" id="kelas" class="form-control">
+                                <option v-for="k in kelas" :key="k.id_kelas" :value="k.id_kelas">{{ k.nama_kelas }}</option>
+                            </select>
+                            
+                            <label for="judul_buku" class="form-label">Buku</label>
+                            <select v-model="peminjaman.id_buku" id="buku" class="form-control">
+                                <option v-for="b in buku" :key="b.id_buku" :value="b.id_buku">{{ b.judul_buku }}</option>
+                            </select>
+
+                            <input type="submit" class="btn btn-primary mt-3">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
         <navbar-component></navbar-component>
         <sidebar-component></sidebar-component>
         <div class="content-wrapper">
@@ -19,8 +51,7 @@
                         <div class="col-md-20">
                             <div class="card card-primary card-outline">
                                 <div class="card-body">
-
-                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                                    <button type="button" class="btn btn-outline-primary mb-2" style="color:black"  data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
                                         Tambah
                                     </button>
@@ -52,15 +83,15 @@
                                                 <td>
                                                     <div class="btn-group">
                                                         
-                                                        <router-link :to="{ path: '/detailpeminjaman/' + n.id_peminjaman }"
-                                                            class="btn btn-primary"> Detail </router-link>
+                                                        <router-link :to="{ path: '/#' + n.id_peminjaman }"
+                                                            class="btn" style="background-color:#31C6D4 "> Detail </router-link>
 
-                                                        <span v-if="n.status == 'Dipinjam'"><button class="btn btn-warning"
+                                                        <span v-if="n.status == 'Dipinjam'"><button class="btn" style="background-color:#FFFF00"
                                                                 @click="kembali(n)">Kembali</button></span>
 
 
                                                         <button type="button" @click="hapus(n)"
-                                                            class="btn btn-danger">Hapus</button>
+                                                            class="btn " style="background-color:#DC143C; color: #F5F5F5;">Hapus</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -98,11 +129,7 @@ export default {
             siswa: {},
             buku: {},
             kelas: {},
-            peminjaman: {
-                id_buku: '',
-                nama: '',
-                alamat: ''
-            },
+            peminjaman: {},
             getpinjam: {},
             getstatus: {},
         }
@@ -146,7 +173,8 @@ export default {
         save_data() {
             axios.post('http://localhost:8000/api/createpeminjaman', this.peminjaman)
                 .then(
-                    ({ data }) => {
+                    (response) => {
+                        console.log(response)
                         swal('Sukses tambah peminjaman', {
                             icon: 'success',
                             button: false
@@ -154,7 +182,6 @@ export default {
                         setTimeout(() => {
                             window.location.reload()
                         }, 1200)
-                        this.peminjaman = data
                     }
 
                 )
