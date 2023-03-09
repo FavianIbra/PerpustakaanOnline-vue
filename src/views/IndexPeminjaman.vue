@@ -199,6 +199,31 @@ export default {
                 }
             });
         },
+        kembali(n) {
+            swal({
+                title: "Ingin mengembalikan buku?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.put('http://localhost:8000/api/kembalipeminjaman/' + n.id_peminjaman)
+                        swal("Selamat! Berhasil mengembalikan buku!", {
+                            icon: "success",
+                            button: false
+                        });
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 1200);
+                    } else {
+                        swal("Proses mengembalikan buku telah di cancel!", {
+                            icon: 'success'
+                        })
+
+                    }
+                });
+        },
     }
 }
 
