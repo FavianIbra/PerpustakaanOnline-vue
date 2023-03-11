@@ -82,8 +82,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        
-                                                        <button style="background-color:#31C6D4 " class="btn" @click="detail()">Detail</button>
+                                                        <router-link style="background-color:#31C6D4 " class="btn" :to="{path: '/detailpeminjaman/' + n.id_peminjaman}">Detail</router-link>
 
                                                         <span v-if="n.status == 'Dipinjam'"><button class="btn" style="background-color:#FFFF00"
                                                                 @click="kembali(n)">Kembali</button></span>

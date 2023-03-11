@@ -3,6 +3,7 @@ import  DashboardView from '../views/DashboardView.vue'
 import IndexSiswa from '../views/IndexSiswa.vue'
 import IndexPeminjaman from '../views/IndexPeminjaman.vue'
 import editsiswa from '../components/edit-siswa/EditSiswa.vue'
+import DetailPeminjaman from '../components/detailpeminjaman/DetailPeminjaman.vue'
 import editbuku from '../components/edit-buku/EditBuku.vue'
 import IndexBuku from '../views/IndexBuku.vue'
 import Vue from 'vue'
@@ -36,6 +37,10 @@ const routes = [
   {
   path: '/peminjaman',
   component: IndexPeminjaman
+  },
+  {
+    path: '/detailpeminjaman',
+    component: DetailPeminjaman
   }
 ]
 
