@@ -6,6 +6,7 @@ import editsiswa from '../components/edit-siswa/EditSiswa.vue'
 import DetailPeminjaman from '../components/detailpeminjaman/DetailPeminjaman.vue'
 import editbuku from '../components/edit-buku/EditBuku.vue'
 import IndexBuku from '../views/IndexBuku.vue'
+import login from '../views/LoginView.vue'
 import Vue from 'vue'
 
 Vue.use(VueRouter)
@@ -41,6 +42,10 @@ const routes = [
   {
     path: '/detailpeminjaman',
     component: DetailPeminjaman
+  },
+  {
+    path: '/login',
+    component: login
   }
 ]
 
