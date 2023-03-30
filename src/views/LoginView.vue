@@ -1,5 +1,6 @@
 <template>
-    <div class="login-box">
+    <div style="margin-top: 10%;">
+    <div class="login-box m-auto">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <h2>Perpustakaan Sekolah</h2>
@@ -29,6 +30,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
